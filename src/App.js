@@ -6,6 +6,7 @@ import Education from './components/education.js'
 import Experience from './components/experience.js'
 import defaultCv from './components/defaultcv.js'
 import Skills from './components/skills.js'
+import { Container, Button, Row, Col } from "react-bootstrap";
 
 class App extends React.Component {
   constructor(props){
@@ -19,18 +20,22 @@ class App extends React.Component {
   render() {
     return (
     <div className="App">
-      <GeneralInfo
-      general = {this.state.cv.general}
-      />
-      <Education
-      education = {this.state.cv.education}
-      />
-      <Experience
-      experience = {this.state.cv.experience}
-      />
-      <Skills
-      skills = {this.state.cv.skills}
-      />
+      <Container >
+        
+        <GeneralInfo
+        general = {this.state.cv.general}
+        />
+        <Education
+        education = {this.state.cv.education}
+        />
+        <Experience
+        experience = {this.state.cv.experience}
+       />
+        <Skills
+        skills = {this.state.cv.skills}
+        />
+        
+      </Container>
     </div>
   )};
 }
