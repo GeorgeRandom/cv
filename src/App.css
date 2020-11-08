@@ -16,12 +16,23 @@
 }
 .container {
   margin-top: 10px;
+  justify-content: center;
 }
 .sheet {
-  background-color: rgb(252, 251, 247);
+  background-color : whitesmoke;
   border-radius: 5px;
-  box-shadow: 0px 0px 5px 0px #000000;
+  box-shadow: 0px 0px 1px 0px #000000;
+  justify-content: center;
 }
 .col{
   margin-bottom: 3px;
+}
+.rightAlign{
+  text-align: right;
+}
+.editing{
+  background-color: cornflowerblue;
+}
+.wherewhat{
+  font-weight: bold;
 }

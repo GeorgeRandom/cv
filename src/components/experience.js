@@ -5,9 +5,14 @@ const Experience = (props) => {
 
     let expArray = props.experience;
 
-    return <div className = "experience sheet">
+    return <div className = {props.isEditing ? 'editing experience sheet' : 'experience sheet'}>
         <Container>
-        <h1>Experience</h1>
+        <h2>Experience </h2>
+        <Row className='wherewhat'>
+                    <Col>Where?</Col>
+                    <Col>What?</Col>
+                    <Col>When?</Col>
+                </Row>
         {expArray.map((item) =>{
             return (
             <Row >
@@ -18,6 +23,20 @@ const Experience = (props) => {
             </Row>
             )}
         )}
+        <Row>
+                <Col></Col>
+                <Col className='rightAlign'>
+                <Button 
+                    variant="outline-primary" 
+                    size="sm"
+                    
+                    onClick={props.clickEdit}
+                    
+                    >
+                    EDIT
+                </Button>
+                </Col>
+            </Row>
         </Container>
         </div>
         

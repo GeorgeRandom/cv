@@ -3,9 +3,9 @@ import { Container, Button, Row, Col,Form } from "react-bootstrap";
 
 const Skills= (props)=>{
     let skillsArray = props.skills
-    return <div className = "education sheet">
+    return <div className = {props.isEditing ? 'editing skills sheet' : 'skills sheet'}>
         <Container>
-            <h1>skills</h1>
+            <h2>extra skills</h2>
             {skillsArray.map((item) =>{
                 let use = item.useful ? "V" : "X";
                 return (
@@ -14,15 +14,23 @@ const Skills= (props)=>{
                     <Col>
                     Useful? {use}
                     </Col>
-                    
-                    
-                   
-                
                 </Row>
                 )}
             )}
             
-            
+        <Row>
+            <Col></Col>
+            <Col className='rightAlign'>
+            <Button 
+                variant="outline-primary" 
+                size="sm"
+                onClick={props.clickEdit}
+                    
+                >
+                EDIT
+            </Button>
+            </Col>
+        </Row>
         </Container>
     </div>
 }
