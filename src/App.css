@@ -36,5 +36,8 @@
 .wherewhat{
   font-weight: bold;
 }
-
+::placeholder{
+  color:black;
+  opacity:1
+}
 
