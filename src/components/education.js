@@ -1,24 +1,54 @@
 import React from 'react';
 import { Container, Button, Row, Col,Form } from "react-bootstrap";
 
+const CustomForm= (props)=>{
+    if (!props.isEditing) return (
+    <Form.Control 
+        type='input'
+        defaultValue={props.text}
+        readOnly 
+        plaintext
+        />
+        )
+    return (
+        <Form.Control
+        type='input'
+        placeholder={props.text}
+        plaintext
+        />
+    )
+    
+}
+
 const Education = (props)=>{
 
     let educArray = props.education
+    let isEditing = props.isEditing
     return <div className = {props.isEditing ? 'editing education sheet' : 'education sheet'}>
         <Container>
             <h2>Education</h2>
                 <Row className='wherewhat'>
                     <Col>Where?</Col>
-                    <Col>What?</Col>
+                    <Col xs={6}>What?</Col>
                     <Col>When?</Col>
                 </Row>
             {educArray.map((item) =>{
                 return (
-                <Row >
-                    <Col>{item.where}</Col>
-                    <Col>{item.what}</Col>
-                    <Col>{item.when}</Col>
-               </Row>
+                <Form.Row >
+                    <Col>
+                    <CustomForm
+                        isEditing={isEditing}
+                        text={item.where}
+                        />
+                    </Col>
+                    <Col xs={6}>{item.what}</Col>
+                    <Col>
+                    <CustomForm
+                        isEditing={isEditing}
+                        text={item.when}
+                        />
+                    </Col>
+               </Form.Row>
                 )}
             )}
             <Row>
@@ -28,10 +58,9 @@ const Education = (props)=>{
                     variant="outline-primary" 
                     size="sm"
                     
-                    onClick={props.clickEdit}
-                    
+                    onClick={!isEditing ? props.clickEdit : props.clickSave}
                     >
-                    EDIT
+                    {props.isEditing ? 'SAVE' : 'EDIT'}
                 </Button>
                 </Col>
             </Row>

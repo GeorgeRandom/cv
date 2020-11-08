@@ -27,7 +27,7 @@ const Skills= (props)=>{
                 onClick={props.clickEdit}
                     
                 >
-                EDIT
+                {props.isEditing ? 'SAVE' : 'EDIT'}
             </Button>
             </Col>
         </Row>

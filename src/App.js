@@ -50,7 +50,12 @@ class App extends React.Component {
     })
     }
         
-    
+  saveEducation = (e) =>{
+    console.log(e)
+    this.setState({
+      isEditingEducation : !this.state.isEditingEducation
+    })
+  }
   
     
   render() {
@@ -66,6 +71,7 @@ class App extends React.Component {
         <Education
         education = {this.state.cv.education}
         clickEdit = {this.editEducation}
+        clickSave = {this.saveEducation}
         isEditing = {this.state.isEditingEducation}
         />
         <Experience

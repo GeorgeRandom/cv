@@ -10,14 +10,14 @@ const Experience = (props) => {
         <h2>Experience </h2>
         <Row className='wherewhat'>
                     <Col>Where?</Col>
-                    <Col>What?</Col>
+                    <Col xs={6}>What?</Col>
                     <Col>When?</Col>
                 </Row>
         {expArray.map((item) =>{
             return (
             <Row >
                 <Col>{item.company}</Col>
-                <Col>{item.job}</Col>
+                <Col xs={6}>{item.job}</Col>
                 <Col>{item.startDate} - {item.endDate}</Col>
             
             </Row>
@@ -33,7 +33,7 @@ const Experience = (props) => {
                     onClick={props.clickEdit}
                     
                     >
-                    EDIT
+                    {props.isEditing ? 'SAVE' : 'EDIT'}
                 </Button>
                 </Col>
             </Row>

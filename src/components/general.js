@@ -30,7 +30,7 @@ const GeneralInfo= (props)=>{
                     onClick={props.clickEdit}
                     
                     >
-                    EDIT
+                    {props.isEditing ? 'SAVE' : 'EDIT'}
                 </Button>
 
                 </Col>
