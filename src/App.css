@@ -31,7 +31,7 @@
   text-align: right;
 }
 .editing{
-  background-color: thistle;
+  background-color: rgb(216, 226, 247);
 }
 .wherewhat{
   font-weight: bold;
@@ -39,5 +39,24 @@
 ::placeholder{
   color:black;
   opacity:1
+}
+.deleteButton{
+  border: none;
+  color :red;
+  padding-top: 10px;
+
+
+}
+
+textarea{
+  overflow-y:hidden;
+  width: 100%;
+  resize :none;
+  border: none;
+  margin-top: 5px;
+  
+}
+.form-control{
+  padding-left : 1px;
 }
 

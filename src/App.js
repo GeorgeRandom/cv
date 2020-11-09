@@ -11,8 +11,9 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 class App extends React.Component {
   constructor(props){
     super(props);
+    const initialCv = JSON.parse(JSON.stringify(defaultCv))
     this.state = {
-      cv : defaultCv,
+      cv : initialCv,
       isEditingBasic: false,
       isEditingEducation :false,
       isEditingExperience : false,
@@ -20,6 +21,7 @@ class App extends React.Component {
       }
  
   }
+ 
  
     //click handlers
   
@@ -49,9 +51,18 @@ class App extends React.Component {
       isEditingSkills: !this.state.isEditingSkills
     })
     }
-        
+  
+
+
+  
   saveEducation = (e) =>{
-    console.log(e)
+    console.log(e);
+    const newCv = this.state.cv;
+    newCv.education = e;
+    this.setState({
+      cv : newCv
+   })
+
     this.setState({
       isEditingEducation : !this.state.isEditingEducation
     })
@@ -71,7 +82,7 @@ class App extends React.Component {
         <Education
         education = {this.state.cv.education}
         clickEdit = {this.editEducation}
-        clickSave = {this.saveEducation}
+        saveEducation = {this.saveEducation}
         isEditing = {this.state.isEditingEducation}
         />
         <Experience
