@@ -1,18 +1,8 @@
 .App {
   text-align: center;
 }
-
-
-
-.head {
-  background-color: #282c34;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body{
+  background-color: #282c34
 }
 .container {
   margin-top: 10px;
@@ -20,8 +10,8 @@
 }
 .sheet {
   background-color : whitesmoke;
-  border-radius: 5px;
-  box-shadow: 0px 0px 1px 0px #000000;
+  border-radius: 20px;
+  box-shadow: 0px 1px 5px 0px #ff34e4;
   justify-content: center;
 }
 .col{
@@ -31,7 +21,7 @@
   text-align: right;
 }
 .editing{
-  background-color: rgb(216, 226, 247);
+  background-color: rgb(244, 248, 255);
 }
 .wherewhat{
   font-weight: bold;
@@ -53,10 +43,29 @@ textarea{
   width: 100%;
   resize :none;
   border: none;
-  margin-top: 5px;
+  padding-top:4px;
+  
   
 }
 .form-control{
   padding-left : 1px;
+  border-radius:0px;
 }
-
+button{
+  margin-left : 5px
+}
+.align-items-right{
+  text-align: right;
+  padding-right: 10px;
+}
+.align-items-left{
+  text-align: left;
+  padding-left: 10px;
+}
+.bottom-text{
+  text-align : center;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 0.8em;
+  max-width: 70%;
+}

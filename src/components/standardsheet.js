@@ -28,6 +28,7 @@ class CustomForm extends React.Component{
         value={this.props.text.replace(/(?:\r\n|\r|\n)/g, ' ')}
         readOnly 
         plaintext
+        className = {this.props.className}
         />
         )
         else{   
@@ -37,6 +38,7 @@ class CustomForm extends React.Component{
             name={this.props.name}
             value={this.props.text}
             onChange={this.handleInputChange}
+            className = {this.props.className}
             />
 
                 )
@@ -47,7 +49,7 @@ class CustomForm extends React.Component{
         name={this.props.name}
         value={this.props.text}
         onChange={this.handleInputChange}
-        className = {this.props.class}
+        className = {this.props.className}
 
 
         
@@ -59,18 +61,18 @@ class CustomForm extends React.Component{
 }
 
 
-class Education extends React.Component{
+class StandardSheet extends React.Component{
     constructor(props){
         super(props);
-        const initialeduc = JSON.parse(JSON.stringify(this.props.education));
+        const initialData = JSON.parse(JSON.stringify(this.props.data));
         this.state = {
-            education : initialeduc
+            data: initialData
         }
     }
     reset = () => {
-        const initialeduc = JSON.parse(JSON.stringify(this.props.education))
+        const initialData = JSON.parse(JSON.stringify(this.props.data))
         this.setState({
-            education : initialeduc
+            data : initialData
             })
         this.props.clickEdit()
         console.log("reset")
@@ -79,7 +81,7 @@ class Education extends React.Component{
     }
     clear = () =>{
         this.setState({
-            education : []
+            data : []
         })
     }
     handleInputChange = (obj) =>{
@@ -90,7 +92,7 @@ class Education extends React.Component{
         //     return item.id == index
         //     })
         
-        const newstate = this.state.education.map((object)=>{
+        const newstate = this.state.data.map((object)=>{
                 if (object.id ==index){
                     let newobj = object;
                     newobj[key] = text
@@ -99,38 +101,38 @@ class Education extends React.Component{
                 return object
             })
          this.setState({
-            education : newstate
+            data : newstate
         })
         
         
      
     }
-    saveEducation = ()=>{
+    saveData = ()=>{
 
-        this.props.saveEducation(this.state.education)
+        this.props.saveData(this.state.data)
     }
-    deleteEducation = (e) =>{
-         let newEduc = this.state.education.filter((obj)=>{
+    deleteLine = (e) =>{
+         const newData = this.state.data.filter((obj)=>{
             return obj.id != e.target.id
-        })
+            })
         this.setState({
-            education : newEduc
+            data: newData
         })
     }
-    addEducation = () =>{
-        let newId = this.state.education.reduce((p, v)=>{
+    addLine = () =>{
+        let newId = this.state.data.reduce((p, v)=>{
             return ( p > v ? p : v )
             }).id + 1
-        const blankEducation = {
+        const blankData = {
             where : '',
             what :'',
             when: '',
             id : newId
             }
-        let newState = this.state.education
-        newState.push(blankEducation)
+        let newState = this.state.data
+        newState.push(blankData)
         this.setState({
-            education: newState
+            data: newState
             })
         console.log(newId)
 
@@ -148,19 +150,21 @@ class Education extends React.Component{
     let button;
     let addButton;
     let resetButton
+    let bottomText
+    if (this.props.isEditing){bottomText = this.props.bottomText}
 
     
-    return <div className = {this.props.isEditing ? 'editing education sheet' : 'education sheet'}>
+    return <div className = {this.props.isEditing ? 'editing sheet' : 'sheet'}>
         <Container>
-            <h2>Education</h2>
+            <h2>{this.props.title}</h2>
                 <Row className='wherewhat'>
-                    <Col>Where?</Col>
+                    <Col className = 'align-items-right'>Where?</Col>
                     <Col xs={6}>What?</Col>
-                    <Col>When?</Col>
+                    <Col className = 'align-items-left'>When?</Col>
                     <Col xs={1}>
                     </Col>
                 </Row>
-            {this.state.education.map((item) =>{
+            {this.state.data.map((item) =>{
                 if (isEditing){
                     button=    
                         <Button
@@ -168,7 +172,7 @@ class Education extends React.Component{
                             variant="outline-danger"
                             className = "deleteButton"
                             id = {item.id}
-                            onClick = {this.deleteEducation}
+                            onClick = {this.deleteLine}
                             >
                             X
                         </Button>
@@ -176,7 +180,7 @@ class Education extends React.Component{
                         <Button
                         variant = 'success'
                         size = 'lg'
-                        onClick = {this.addEducation}
+                        onClick = {this.addLine}
                         >
                         +
                         </Button>
@@ -202,6 +206,7 @@ class Education extends React.Component{
                         id = {item.id}
                         category = 'where'
                         type = 'input'
+                        className = 'align-items-right'
                         />
                     </Col>
                     <Col xs={6}>
@@ -213,7 +218,7 @@ class Education extends React.Component{
                         category = 'what'
                         id = {item.id}
                         type = 'textarea'
-                        class = 'textarea-autosize.form-control-sm'
+                        className = 'textarea-autosize.form-control-sm'
                         />
                     </Col>
                     <Col>
@@ -225,6 +230,7 @@ class Education extends React.Component{
                         category = 'when'
                         id = {item.id}
                         type = 'input'
+                        className = 'align-items-left'
                         />
                     </Col>
 
@@ -247,13 +253,15 @@ class Education extends React.Component{
                     variant="outline-primary" 
                     size="sm"
                     
-                    onClick={!isEditing ? this.props.clickEdit : this.saveEducation}
+                    onClick={!isEditing ? this.props.clickEdit : this.saveData}
                     >
                     {this.props.isEditing ? 'SAVE' : 'EDIT'}
                 </Button>
 
                 </Col>
             </Row>
+            
+            <Row className= 'bottom-text'>{bottomText}</Row>
             
             
         </Container>
@@ -263,4 +271,4 @@ class Education extends React.Component{
 
     
 
-export default Education;
+export default StandardSheet;

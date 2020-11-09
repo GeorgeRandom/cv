@@ -6,7 +6,13 @@ import Education from './components/education.js'
 import Experience from './components/experience.js'
 import defaultCv from './components/defaultcv.js'
 import Skills from './components/skills.js'
-import { Container, Button, Row, Col } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap"
+import StandardSheet from './components/standardsheet.js';
+
+
+//textes
+const educationBottomText = "TRALALALALA tu es en train d'éditer ton EDUCATION, petit sacripant"
+const experienceBottomText = "Houlalalalalala tu es vraiment en train d'éditer ton expérience professionnelle, dis donc, ca alors"
 
 class App extends React.Component {
   constructor(props){
@@ -61,11 +67,22 @@ class App extends React.Component {
     newCv.education = e;
     this.setState({
       cv : newCv
-   })
-
-    this.setState({
-      isEditingEducation : !this.state.isEditingEducation
     })
+     this.setState({
+      isEditingEducation : false
+    })
+  }
+
+  saveExperience = (e)=>{
+    const newCv = this.state.cv;
+    newCv.experience = e;
+    this.setState({
+      cv : newCv
+    })
+     this.setState({
+      isEditingExperience : false
+    })
+
   }
   
     
@@ -79,16 +96,22 @@ class App extends React.Component {
         clickEdit = {this.editBasicInfo}
         isEditing = {this.state.isEditingBasic}
         />
-        <Education
-        education = {this.state.cv.education}
+        <StandardSheet
+        title = "Education"
+        data = {this.state.cv.education}
         clickEdit = {this.editEducation}
-        saveEducation = {this.saveEducation}
+        saveData = {this.saveEducation}
         isEditing = {this.state.isEditingEducation}
+        bottomText = {educationBottomText}
         />
-        <Experience
-        experience = {this.state.cv.experience}
+        <StandardSheet
+        title = 'EXPERIENCE'
+        data = {this.state.cv.experience}
         clickEdit = {this.editExperience}
+        saveData = {this.saveExperience}
         isEditing = {this.state.isEditingExperience}
+        bottomText = {experienceBottomText}
+        
        />
         <Skills
         skills = {this.state.cv.skills}
